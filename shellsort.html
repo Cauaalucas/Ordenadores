@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shell Sort</title>
+</head>
+<body>
+
+    <h1>teste</h1>
+
+    
+
+    <script>
+        function shellSort(arr) {
+            let n = arr.length;
+            for (let gap = Math.floor(n / 2); gap > 0; gap = Math.floor(gap / 2)) {
+                for (let i = gap; i < n; i++) {
+                    let temp = arr[i];
+                    let j = i;
+                    while (j >= gap && arr[j - gap] > temp) {
+                        arr[j] = arr[j - gap];
+                        j -= gap;
+                    }
+                    arr[j] = temp;
+                }
+            }
+            return arr;
+        }
+
+        let startTime = new Date().getTime();
+        // Your array to sort
+        let arr = [/*Your array elements here*/];
+        arr = shellSort(arr);
+        let endTime = new Date().getTime();
+        let executionTime = endTime - startTime;
+        console.log("Execution time for Shell Sort: " + executionTime + " milliseconds");
+    </script>
+</body>
+</html>
