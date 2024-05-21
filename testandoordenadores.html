@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordenação</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="Titulo">
+        <h1>Ordenação</h1>
+        <p>Selecione sua ordenação</p>
+    </div>
+
+    <div id="btnordenadores">
+        <ul>
+            <li><a href="insertionsort.html"><button>Ordenação por InsertioSort</button></a></li>
+            <li><a href="mergesort.html"><button>Ordenação por MergeSort</button></a></li>
+            <li><a href="shellsort.html"><button>Ordenação por Shell</button></a></li>
+            <li><a href="snakesort.html"><button>Ordenação da Cobra</button></a></li>
+        </ul>
+    </div>
+
+    <div>
+        <h1>Exemplos de Ordenadores e suas funções</h1>
+        <ul>
+            <li>
+                <h1>Shell Sort</h1>
+                <label for="InserirValores">Insira os valores (Separados por Vírgula)</label>
+
+                <input type="text" id="InserirValores" placeholder="1, 4, 3, 2 ...">
+                
+                <button onclick="Display()">Ordenar</button>
+                <br>
+                <p id="nmrordenado"></p>
+                <br>
+                <p id="tempoexec"></p>
+                <br>
+            </li>
+            <li><input type="text" name="campo" placeholder="3, 1, 2, 4 ..."> Ordenador Por MergeSort
+                <p>Informe apenas número separados por vírgulas</p>
+                <p>O algoritmo mergeSort divide a sequência original em pares de dados, agrupa estes pares na ordem desejada, depois as agrupa em sequências de pares já ordenados, formando uma nova sequência ordenada de quatro elementos, e assim por diante, até ter toda a sequência ordenada.</p>
+            </li>
+            <li><input type="text" name="campo" placeholder="2, 1, 3, 4 ..."> Ordenação por Shell
+                <p>Informe apenas número separados por vírgulas</p>
+                <p>O algoritmo de ordenação por Shell, ou Shell Sort, é uma melhoria do método de ordenação por inserção direta. Foi desenvolvido por Donald Shell em 1959 e tem como objetivo melhorar a eficiência do algoritmo de inserção direta, especialmente para listas grandes.</p>
+            </li>
+            <li><input type="text" name="campo" placeholder="1, 4, 3, 9 ..."> Ordenação por SnakeSort
+                <p>Informe apenas números separados por vírgula</p>
+                <p>Snakesort é uma técnica de ordenação menos conhecida, que tem um comportamento e uso específico em algumas situações. A ideia por trás do Snakesort é criar uma estrutura de lista "zigue-zague" ou "serpente" que ordena elementos alternando entre crescentes e decrescentes, em vez de uma sequência estritamente crescente ou decrescente.</p>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        function shellSort(arr) {
+            let n = arr.length;
+            for (let gap = Math.floor(n / 2); gap > 0; gap = Math.floor(gap / 2)) {
+                for (let i = gap; i < n; i++) {
+                    let temp = arr[i];
+                    let j;
+                    for (j = i; j >= gap && arr[j - gap] > temp; j -= gap) {
+                        arr[j] = arr[j - gap];
+                    }
+                    arr[j] = temp;
+                }
+            }
+            return arr;
+        }
+
+        function Tempo(arr) {
+            let arraycopy = arr.slice();
+            let startTime = performance.now();
+            shellSort(arraycopy);
+            let endtime = performance.now();
+            let tempoexec = endtime - startTime;
+            return { nmrordenado: arraycopy, time: tempoexec };
+        }
+
+        function Display() {
+            let input = document.getElementById('InserirValores').value;
+            let arr = input.split(',').map(Number);
+            let result = Tempo(arr);
+            document.getElementById('nmrordenado').textContent = 'Array ordenado: ' + result.nmrordenado.join(',');
+            document.getElementById('tempoexec').textContent = 'Tempo de execução: ' + result.time.toFixed(2) + ' milissegundos';
+        }
+    </script>
+
+</body>
+
+</html>
