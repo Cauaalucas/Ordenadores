@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ordenação de Valores</title>
+    
+    <style>
+       
+        #tituloord {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #tituloord h1 {
+            font-size: 2.5rem;
+            color: #3498db;
+            margin: 0;
+        }
+
+        #tituloord p {
+            font-size: 1.2rem;
+            color: #2c3e50;
+        }
+
+        #valores {
+            width: 300px;
+            padding: 10px;
+            border: 2px solid #3498db;
+            border-radius: 5px;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+    
+        #botoesord {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        #botoesord button {
+            background: #3498db;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s;
+            margin: 5px;
+        }
+
+        #botoesord button:hover {
+            background: #2980b9;
+        }
+
+        
+        #resultado {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        #tempo {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 1rem;
+            color: #537494;
+        }
+    </style>
+</head>
+<body>
+    <div id="tituloord">
+        <h1>Ordenação de Valores</h1>
+        <p>Insira os valores separados por vírgula:</p>
+        <input type="text" id="valores">
+    </div>
+    <div id="botoesord">
+        <button onclick="ordenar(bubbleSort)">Bubble Sort</button>
+        <button onclick="ordenar(quickSort)">Quick Sort</button>
+        <button onclick="ordenar(insertionSort)">Insertion Sort</button>
+        <button onclick="ordenar(selectionSort)">Selection Sort</button>
+        <button onclick="ordenar(mergeSort)">Merge Sort</button>
+        <button onclick="ordenar(heapSort)">Heap Sort</button>
+        <button onclick="ordenar(radixSort)">Radix Sort</button>
+        <button onclick="ordenar(shellSort)">Shell Sort</button>
+        <button onclick="ordenar(stoogeSort)">Stooge Sort</button>
+        <button onclick="ordenar(cocktailShakerSort)">Cocktail Shaker Sort</button>
+        <button onclick="ordenar(gnomeSort)">Gnome Sort</button>
+        <button onclick="ordenar(cycleSort)">Cycle Sort</button>
+    </div>
+    <div id="resultado"></div>
+    <div id="tempo"></div>
+    <script>
+    
+    //1
+    function bubbleSort(valores) {
+        var inicio = performance.now();
+        var len = valores.length;
+        for (var i = 0; i < len; i++) {
+            for (var j = 0; j < len - 1; j++) {
+                if (valores[j] > valores[j + 1]) {
+                    var temp = valores[j];
+                    valores[j] = valores[j + 1];
+                    valores[j + 1] = temp;
+                }
+            }
+        }
+        var fim = performance.now();
+        var tempoExecucao = fim - inicio;
+        return { valores: valores, tempo: tempoExecucao };
+    }
+    
+    //2
+    function quickSort(valores) {
+        var inicio = performance.now();
+        if (valores.length <= 1) return { valores: valores, tempo: 0 };
+    
+        var pivot = valores[0];
+        var left = [];
+        var right = [];
+    
+        for (var i = 1; i < valores.length; i++) {
+            if (valores[i] < pivot) {
+                left.push(valores[i]);
+            } else {
+                right.push(valores[i]);
+            }
+        }
+    
+        var fim = performance.now();
+        var tempoExecucao = fim - inicio;
+        return { valores: quickSort(left).valores.concat(pivot, quickSort(right).valores), tempo: tempoExecucao };
+    }
+    
+    //3
+    function insertionSort(valores) {
+        var inicio = performance.now();
+        for (var i = 1; i < valores.length; i++) {
+            var key = valores[i];
+            var j = i - 1;
+            while (j >= 0 && valores[j] > key) {
+                valores[j + 1] = valores[j];
+                j = j - 1;
+            }
+            valores[j + 1] = key;
+        }
+        var fim = performance.now();
+        var tempoExecucao = fim - inicio;
+        return { valores: valores, tempo: tempoExecucao };
+    }
+    
+    //4
+    function selectionSort(valores) {
+        var inicio = performance.now();
+        var len = valores.length;
+        for (var i = 0; i < len - 1; i++) {
+            var min = i;
+            for (var j = i + 1; j < len; j++) {
+                if (valores[j] < valores[min]) {
+                    min = j;
+                }
+            }
+            if (min !== i) {
+                var temp = valores[i];
+                valores[i] = valores[min];
+                valores[min] = temp;
+            }
+        }
+        var fim = performance.now();
+        var tempoExecucao = fim - inicio;
+        return { valores: valores, tempo: tempoExecucao };
+    }
+    
+    //5
+    function mergeSort(valores) {
+        var inicio = performance.now();
+        if (valores.length <= 1) {
+            var fim = performance.now();
+            var tempoExecucao = fim - inicio;
+            return { valores: valores, tempo: tempoExecucao };
+        }
+    
+        const meio = Math.floor(valores.length / 2);
+        const esquerda = valores.slice(0, meio);
+        const direita = valores.slice(meio);
+    
+        var fim = performance.now();
+        var tempoExecucao = fim - inicio;
+    
+        return merge(mergeSort(esquerda), mergeSort(direita));
+    }
+    function merge(esquerda, direita) {
+        var inicio = performance.now();
+        let resultado = [];
+        let indexEsquerda = 0;
+        let indexDireita = 0;
+    
+        while (indexEsquerda < esquerda.valores.length && indexDireita < direita.valores.length) {
+            if (esquerda.valores[indexEsquerda] < direita.valores[indexDireita]) {
+                resultado.push(esquerda.valores[indexEsquerda]);
+                indexEsquerda++;
+            } else {
+                resultado.push(direita.valores[indexDireita]);
+                indexDireita++;
+            }
+        }
+    
+        while (indexEsquerda < esquerda.valores.length) {
+            resultado.push(esquerda.valores[indexEsquerda]);
+            indexEsquerda++;
+        }
+    
+        while (indexDireita < direita.valores.length) {
+            resultado.push(direita.valores[indexDireita]);
+            indexDireita++;
+        }
+    
+        var fim = performance.now();
+        var tempoExecucao = fim - inicio;
+    
+        return { valores: resultado, tempo: tempoExecucao };
+    }
+    
+    //7
+    function heapSort(valores) {
+        var inicio = performance.now();
+        function maxHeapify(valores, index, heapSize) {
+            let largest = index;
+            const left = 2 * index + 1;
+            const right = 2 * index + 2;
+    
+            if (left < heapSize && valores[left] > valores[largest]) {
+                largest = left;
+            }
+    
+            if (right < heapSize && valores[right] > valores[largest]) {
+                largest = right;
+            }
+    
+            if (largest !== index) {
+                [valores[index], valores[largest]] = [valores[largest], valores[index]];
+                maxHeapify(valores, largest, heapSize);
+            }
+        }
+
+  
+        function buildMaxHeap(valores) {
+            const len = valores.length;
+            for (let i = Math.floor(len / 2); i >= 0; i--) {
+                maxHeapify(valores, i, len);
+            }
+            return valores;
+        }
+   
+        function heapSort(valores) {
+            let heapSize = valores.length;
+            buildMaxHeap(valores);
+            for (let i = valores.length - 1; i > 0; i--) {
+                [valores[0], valores[i]] = [valores[i], valores[0]];
+                heapSize--;
+                maxHeapify(valores, 0, heapSize);
+            }
+            return valores;
+        }
+    
+        var fim = performance.now();
+        var tempoExecucao = fim - inicio;
+    
+        return { valores: heapSort(valores), tempo: tempoExecucao };
+    }
+
+
+    //8
+    function radixSort(valores) {
+        var inicio = performance.now();
+        const getMax = (arr) => {
+            let max = 0;
+            for (let num of arr) {
+                let numString = num.toString();
+                max = Math.max(max, numString.length);
+            }
+            return max;
+        }
+    
+        const countingSort = (arr, place) => {
+            let output = new Array(arr.length).fill(0);
+            let count = new Array(10).fill(0);
+    
+            for (let num of arr) {
+                let numString = num.toString();
+                let digit = numString[numString.length - place - 1] || 0;
+                count[parseInt(digit)]++;
+            }
+    
+            for (let i = 1; i < count.length; i++) {
+                count[i] += count[i - 1];
+            }
+    
+            for (let i = arr.length - 1; i >= 0; i--) {
+                let num = arr[i];
+                let numString = num.toString();
+                let digit = numString[numString.length - place - 1] || 0;
+                output[count[parseInt(digit)] - 1] = num;
+                count[parseInt(digit)]--;
+            }
+    
+            for (let i = 0; i < arr.length; i++) {
+                arr[i] = output[i];
+            }
+    
+            return arr;
+        }
+    
+        const radixSort = (arr) => {
+            let max = getMax(arr);
+            for (let i = 0; i < max; i++) {
+                arr = countingSort(arr, i);
+            }
+            return arr;
+        }
+    
+        var fim = performance.now();
+        var tempoExecucao = fim - inicio;
+    
+        return { valores: radixSort(valores), tempo: tempoExecucao };
+    }
+    
+    //9
+    function shellSort(valores) {
+        var inicio = performance.now();
+        const n = valores.length;
+        for (let gap = Math.floor(n / 2); gap > 0; gap = Math.floor(gap / 2)) {
+            for (let i = gap; i < n; i++) {
+                let temp = valores[i];
+                let j;
+                for (j = i; j >= gap && valores[j - gap] > temp; j -= gap) {
+                    valores[j] = valores[j - gap];
+                }
+                valores[j] = temp;
+            }
+        }
+        var fim = performance.now();
+        var tempoExecucao = fim - inicio;
+        return { valores: valores, tempo: tempoExecucao };
+    }
+    
+    //10
+    function stoogeSort(valores) {
+        var inicio = performance.now();
+        const stoogeSortHelper = (valores, inicio, fim) => {
+            if (valores[inicio] > valores[fim]) {
+                [valores[inicio], valores[fim]] = [valores[fim], valores[inicio]];
+            }
+            if (fim - inicio > 1) {
+                const terco = Math.floor((fim - inicio + 1) / 3);
+                stoogeSortHelper(valores, inicio, fim - terco);
+                stoogeSortHelper(valores, inicio + terco, fim);
+                stoogeSortHelper(valores, inicio, fim - terco);
+            }
+        }
+    
+        stoogeSortHelper(valores, 0, valores.length - 1);
+        var fim = performance.now();
+        var tempoExecucao = fim - inicio;
+        return { valores: valores, tempo: tempoExecucao };
+    }
+    
+    //11
+    function cocktailShakerSort(valores) {
+        var inicio = performance.now();
+        const len = valores.length;
+        let swapped = true;
+        let start = 0;
+        let end = len - 1;
+    
+        while (swapped) {
+            swapped = false;
+            for (let i = start; i < end; i++) {
+                if (valores[i] > valores[i + 1]) {
+                    [valores[i], valores[i + 1]] = [valores[i + 1], valores[i]];
+                    swapped = true;
+                }
+            }
+    
+            if (!swapped) break;
+    
+            swapped = false;
+            end--;
+    
+            for (let i = end - 1; i >= start; i--) {
+                if (valores[i] > valores[i + 1]) {
+                    [valores[i], valores[i + 1]] = [valores[i + 1], valores[i]];
+                    swapped = true;
+                }
+            }
+    
+            start++;
+        }
+    
+        var fim = performance.now();
+        var tempoExecucao = fim - inicio;
+    
+        return { valores: valores, tempo: tempoExecucao };
+    }
+    
+    //12
+    function gnomeSort(valores) {
+        var inicio = performance.now();
+        let i = 1;
+        let j = 2;
+        while (i < valores.length) {
+            if (valores[i - 1] <= valores[i]) {
+                i = j;
+                j++;
+            } else {
+                [valores[i], valores[i - 1]] = [valores[i - 1], valores[i]];
+                i--;
+                if (i === 0) {
+                    i = j;
+                    j++;
+                }
+            }
+        }
+    
+        var fim = performance.now();
+        var tempoExecucao = fim - inicio;
+    
+        return { valores: valores, tempo: tempoExecucao };
+    }
+    
+    //13
+    function cycleSort(valores) {
+        var inicio = performance.now();
+        const n = valores.length;
+        for (let inicioCiclo = 0; inicioCiclo <= n - 2; inicioCiclo++) {
+            let item = valores[inicioCiclo];
+            let posicao = inicioCiclo;
+            for (let i = inicioCiclo + 1; i < n; i++) {
+                if (valores[i] < item) {
+                    posicao++;
+                }
+            }
+            if (posicao === inicioCiclo) {
+                continue;
+            }
+            while (item === valores[posicao]) {
+                posicao++;
+            }
+            if (posicao !== inicioCiclo) {
+                [item, valores[posicao]] = [valores[posicao], item];
+            }
+            while (posicao !== inicioCiclo) {
+                posicao = inicioCiclo;
+                for (let i = inicioCiclo + 1; i < n; i++) {
+                    if (valores[i] < item) {
+                        posicao++;
+                    }
+                }
+                while (item === valores[posicao]) {
+                    posicao++;
+                }
+                if (item !== valores[posicao]) {
+                    [item, valores[posicao]] = [valores[posicao], item];
+                }
+            }
+        }
+        var fim = performance.now();
+        var tempoExecucao = fim - inicio;
+        return { valores: valores, tempo: tempoExecucao };
+    }
+    
+    
+
+function ordenar(algoritmo) {
+                var valores = document.getElementById('valores').value.split(',').map(Number);
+                var resultado = algoritmo(valores);
+                document.getElementById('resultado').innerText = 'Valores Ordenados: ' + resultado.valores;
+                document.getElementById('tempo').innerText = 'Tempo de Execução: ' + resultado.tempo + ' milissegundos';
+            }
+       
+       </script>
+
+</body>
+</html>
