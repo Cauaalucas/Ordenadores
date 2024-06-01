@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="Pt-br">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -9,93 +9,80 @@
 </head>
 
 <body>
-    <div id=Titulo>
-
-        <h1> Ordenação </h1>
-
-        <p> Selecione sua ordenação </p>
-
-    </div>
-
-    <div id=btnordenadores>
-
-        <ul>
-            <li> <a href="insertionsort.html "> <button> Ordenação por InsertioSort </button> </a> </li>
-
-            <li> <a href="mergesort.html"> <button> Ordenação por MergeSort </button> </a> </li>
-
-            <li> <a href="shellsort.html"> <button> Ordenação por Shell </button> </a> </li>
-
-            <li> <a href="snakesort.html"> <button> Ordenação da Cobra </button> </a> </li>
-
-        </ul>
-
+    <div id="Titulo">
+        <h1>Ordenação</h1>
+        <p>Selecione sua ordenação</p>
     </div>
 
     <div id="exeorde">
         <h1>Exemplos de Ordenadores e suas funções</h1>
         <ul>
 
-                <li>
-                    <h1>shell sort</h1>
-                    <label for="InserirValores">Insira os valores(Separados por Vírgula)</label>
-
-                    <input type="text" id="InserirValores" placeholder="teste">
-
-                    <button onclick="Display()"> Ordenar</button>
-                    <br>
-                    <p id="nmrordenado"></p>
-                    <br>
-                    <p id="tempoexec"></p>
-                    <br>
-
-                </li>
+            <br>
+            <li id="insertion">
+                <h1>Insertion Sort</h1>
+                <label for="InserirValoresInsertion">Insira os valores (Separados por vírgula)</label>
+                <input type="text" id="InserirValoresInsertion" placeholder="1, 4, 3, 2 ...">
+                <button onclick="displayInsertionSort()">Ordenar</button>
                 <br>
-            <!-- 
-            <li id="insertion"><input type="text" name="campo" placeholder="1, 4, 3, 2 ..."> Ordenador Por InsertionSort
-                <p>Informe apenas números separados por vírgulas</p>
-                <p>Insertion Sort ou ordenação por inserção é o método que percorre um vetor de elementos da esquerda
-                    para a direita e à medida que avança vai ordenando os elementos à esquerda</p>
-                <button onclick="shellSort()"> ShellSort </button>
+                <p id="nmrordenadoInsertion"></p>
                 <br>
-                <p id="nmrordenado"></p>
-                <p id="tempoexec"></p>
+                <p id="tempoexecInsertion"></p>
                 <br>
-                
-
-            </li id="merge"> -->
-
-            <li><input type="text" name="campo" placeholder="3, 1, 2, 4 ..."> Ordenador Por MergeSort
-                <p>Informe apenas número separados por vírgulas</p>
-                <p> O algoritimo mergeSort, divide a sequência original em pares de dados, agrupa estes pares na ordem
-                    desejada, depois as agrupa em sequências de pares já ordenados, formando uma nova sequência ordenada
-                    de quatro elementos, e assim por diante, até ter toda a sequência ordenada.</p>
-
             </li>
-
-            <li id="shell"><input type="text" name="campo" placeholder="2, 1, 3, 4 ..."> Ordenação por Shell
-                <p>Informe apenas número separados por vírgulas</p>
-                <p>O algoritmo de ordenação por Shell, ou Shell Sort, é uma melhoria do método de ordenação por inserção
-                    direta. Foi desenvolvido por Donald Shell em 1959 e tem como objetivo melhorar a eficiência do
-                    algoritmo de inserção direta, especialmente para listas grandes. </p>
-
+            <li id="merge">
+                <h1>Merge Sort</h1>
+                <label for="InserirValoresMerge">Insira os valores (Separados por vírgula)</label>
+                <input type="text" id="InserirValoresMerge" placeholder="3, 1, 2, 4 ...">
+                <button onclick="displayMergeSort()">Ordenar</button>
+                <br>
+                <p id="nmrordenadoMerge"></p>
+                <br>
+                <p id="tempoexecMerge"></p>
+                <br>
             </li>
-
-            <li id="Snake"><input type="text" name="campo" placeholder="1, 4, 3, 9 ..."> Ordenação por SnakeShort
-                <p>Informe apenas números separados por vírgula</p>
-                <p>Snakesort é uma técnica de ordenação menos conhecida, que tem um comportamento e uso específico em
-                    algumas situações. A ideia por trás do Snakesort é criar uma estrutura de lista "zigue-zague" ou
-                    "serpente" que ordena elementos alternando entre crescentes e decrescentes, em vez de uma sequência
-                    estritamente crescente ou decrescente.</p>
-
-
+            <li id="shell">
+                <h1>Shell Sort</h1>
+                <label for="InserirValoresShell2">Insira os valores (Separados por vírgula)</label>
+                <input type="text" id="InserirValoresShell2" placeholder="2, 1, 3, 4 ...">
+                <button onclick="displayShellSort2()">Ordenar</button>
+                <br>
+                <p id="nmrordenadoShell2"></p>
+                <br>
+                <p id="tempoexecShell2"></p>
+                <br>
             </li>
-
-
+            <li id="Snake">
+                <h1>Snake Sort</h1>
+                <label for="InserirValoresSnake">Insira os valores (Separados por vírgula)</label>
+                <input type="text" id="InserirValoresSnake" placeholder="1, 4, 3, 9 ...">
+                <button onclick="displayShakeSort()">Ordenar</button>
+                <br>
+                <p id="nmrordenadoSnake"></p>
+                <br>
+                <p id="tempoexecSnake"></p>
+                <br>
+            </li>
         </ul>
-
-
     </div>
+  
+    <div id="Titulo">
+        <h1>Explicação dos principais ordenadores</h1>
+    </div>
+
+
+    <div id="btnordenadores">
+        <ul>
+            <li><a href="insertionsort.html"><button>Ordenação por InsertionSort</button></a></li>
+            <li><a href="mergesort.html"><button>Ordenação por MergeSort</button></a></li>
+            <li><a href="shellsort.html"><button>Ordenação por ShellSort</button></a></li>
+            <li><a href="shakesort.html"><button>Ordenação por ShakeSort</button></a></li>
+            <li><a href="outrosorde.html"><button>Outros exemplos de ordenadores</button></a></li>
+        </ul>
+    </div>
+
+
+
 
     <script>
         function shellSort(arr) {
@@ -104,36 +91,136 @@
                 for (let i = gap; i < n; i++) {
                     let temp = arr[i];
                     let j;
-
                     for (j = i; j >= gap && arr[j - gap] > temp; j -= gap) {
                         arr[j] = arr[j - gap];
                     }
                     arr[j] = temp;
                 }
-
             }
             return arr;
         }
 
-        function Tempo(arr){           
-            let arraycopy = arr.slice();
-            let startTime = performance.now();
-            shellSort(arraycopy);
-            let endtime = performance.now();
-            let tempoexec = endtime - startTime; 
-            return {nmrordenado: arraycopy, time: tempoexec}
+        function insertionSort(arr) {
+            let n = arr.length;
+            for (let i = 1; i < n; i++) {
+                let key = arr[i];
+                let j = i - 1;
+                while (j >= 0 && arr[j] > key) {
+                    arr[j + 1] = arr[j];
+                    j = j - 1;
+                }
+                arr[j + 1] = key;
+            }
+            return arr;
         }
 
-    function Display(){
-        let input = document.getElementById('InserirValores').value;
-        let arr = input.split(',').map(Number);
-        let result =Tempo(arr);
-        document.getElementById('nmrordenado').textContent = 'Array ordenado: ' + result.nmrordenado.join(',');
-        document.getElementById('tempoexec').textContent = 'Tempo de execução: ' + result.time.toFixed(2) + 'milissegundos';
-    }
+        function mergeSort(arr) {
+            if (arr.length <= 1) {
+                return arr;
+            }
 
+            const middle = Math.floor(arr.length / 2);
+            const left = arr.slice(0, middle);
+            const right = arr.slice(middle);
+
+            return merge(
+                mergeSort(left), mergeSort(right)
+            );
+        }
+
+        function merge(left, right) {
+            let resultArray = [], leftIndex = 0, rightIndex = 0;
+
+            while (leftIndex < left.length && rightIndex < right.length) {
+                if (left[leftIndex] < right[rightIndex]) {
+                    resultArray.push(left[leftIndex]);
+                    leftIndex++;
+                } else {
+                    resultArray.push(right[rightIndex]);
+                    rightIndex++;
+                }
+            }
+
+            return resultArray
+                .concat(left.slice(leftIndex))
+                .concat(right.slice(rightIndex));
+        }
+
+        function shakeSort(arr) {
+            let swapped;
+            do {
+                swapped = false;
+                for (let i = 0; i < arr.length - 1; i++) {
+                    if (arr[i] > arr[i + 1]) {
+                        let temp = arr[i];
+                        arr[i] = arr[i + 1];
+                        arr[i + 1] = temp;
+                        swapped = true;
+                    }
+                }
+                if (!swapped) break;
+                swapped = false;
+                for (let j = arr.length - 1; j > 0; j--) {
+                    if (arr[j] < arr[j - 1]) {
+                        let temp = arr[j];
+                        arr[j] = arr[j - 1];
+                        arr[j - 1] = temp;
+                        swapped = true;
+                    }
+                }
+            } while (swapped);
+            return arr
+        }
+
+        function measureSort(sortFunction, arr) {
+            let arrayCopy = arr.slice();
+            let startTime = performance.now();
+            let sortedArray = sortFunction(arrayCopy);
+            let endTime = performance.now();
+            let executionTime = endTime - startTime;
+            return { sortedArray, executionTime };
+        }
+
+        function displayShellSort() {
+            let input = document.getElementById('InserirValoresShell').value;
+            let arr = input.split(',').map(Number);
+            let result = measureSort(shellSort, arr);
+            document.getElementById('nmrordenadoShell').textContent = 'Número ordenado: ' + result.sortedArray.join(', ');
+            document.getElementById('tempoexecShell').textContent = 'Tempo de execução: ' + result.executionTime.toFixed(2) + ' milissegundos';
+        }
+
+        function displayInsertionSort() {
+            let input = document.getElementById('InserirValoresInsertion').value;
+            let arr = input.split(',').map(Number);
+            let result = measureSort(insertionSort, arr);
+            document.getElementById('nmrordenadoInsertion').textContent = 'Número ordenado: ' + result.sortedArray.join(', ');
+            document.getElementById('tempoexecInsertion').textContent = 'Tempo de execução: ' + result.executionTime.toFixed(2) + ' milissegundos';
+        }
+
+        function displayMergeSort() {
+            let input = document.getElementById('InserirValoresMerge').value;
+            let arr = input.split(',').map(Number);
+            let result = measureSort(mergeSort, arr);
+            document.getElementById('nmrordenadoMerge').textContent = 'Número ordenado: ' + result.sortedArray.join(', ');
+            document.getElementById('tempoexecMerge').textContent = 'Tempo de execução: ' + result.executionTime.toFixed(2) + ' milissegundos';
+        }
+
+        function displayShellSort2() {
+            let input = document.getElementById('InserirValoresShell2').value;
+            let arr = input.split(',').map(Number);
+            let result = measureSort(shellSort, arr);
+            document.getElementById('nmrordenadoShell2').textContent = 'Número ordenado: ' + result.sortedArray.join(', ');
+            document.getElementById('tempoexecShell2').textContent = 'Tempo de execução: ' + result.executionTime.toFixed(2) + ' milissegundos';
+        }
+
+        function displayShakeSort() {
+            let input = document.getElementById('InserirValoresSnake').value;
+            let arr = input.split(',').map(Number);
+            let result = measureSort(shakeSort, arr);
+            document.getElementById('nmrordenadoSnake').textContent = 'Número ordenado: ' + result.sortedArray.join(', ');
+            document.getElementById('tempoexecSnake').textContent = 'Tempo de execução: ' + result.executionTime.toFixed(2) + ' milissegundos';
+        }
     </script>
-
 </body>
 
 </html>

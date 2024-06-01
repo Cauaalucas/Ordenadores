@@ -5,3 +5,184 @@
     list-style-type: none !important;
 }
 
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to right, #ece9e6, #ffffff);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    color: #333;
+}
+
+
+#Titulo {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#Titulo h1 {
+    font-size: 2.5rem;
+    color: #3498db;
+    margin: 0;
+}
+
+#Titulo p {
+    font-size: 1.2rem;
+    color: #2c3e50;
+}
+
+
+#btnordenadores {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+#btnordenadores ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; 
+    gap: 10px;
+}
+
+#btnordenadores li {
+    margin: 0;
+}
+
+#btnordenadores button {
+    background: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
+    text-decoration: none; 
+}
+
+#btnordenadores button:hover {
+    background: #2980b9;
+}
+
+
+#exeorde {
+    width: 90%;
+    max-width: 1200px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 20px;
+}
+
+#exeorde h1 {
+    font-size: 2rem;
+    color: #2980b9;
+    text-align: center;
+}
+
+
+#exeorde ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-between;
+}
+
+#exeorde li {
+    flex: 1;
+    min-width: 250px; 
+    max-width: 48%; 
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+
+#exeorde label {
+    font-size: 1.1rem;
+    color: #2c3e50;
+    display: block;
+    margin-bottom: 5px;
+}
+
+
+#exeorde input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #3498db;
+    border-radius: 5px;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+
+#exeorde button {
+    background: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+#exeorde button:hover {
+    background: #2980b9;
+}
+
+
+#exeorde p { 
+    font-size: 1rem;
+    color: #537494;
+    margin: 0;
+}
+
+#exeorde p:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+
+@media (max-width: 800px) {
+    #Titulo h1 {
+        font-size: 2rem;
+    }
+
+    #Titulo p {
+        font-size: 1rem;
+    }
+
+    #btnordenadores ul {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    #btnordenadores button {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+
+    #exeorde {
+        width: 95%;
+    }
+
+    #exeorde h1 {
+        font-size: 1.5rem;
+    }
+
+    #exeorde ul {
+        flex-direction: column;
+    }
+
+    #exeorde li {
+        max-width: 100%;
+    }
+}
